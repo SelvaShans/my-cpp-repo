@@ -54,7 +54,13 @@ def finish(target, source, env):
     if not GetOption('skipTests'):
         env.executeUnitTests()
 
-    print ("[Timestamp] FINISH SCONS AT %s" % time.strftime('%H:%M:%S'))
+    print ("FINISH SCONS AT %s" % time.strftime('%H:%M:%S'))
 
 finishCommand = env.Command('/finish', None, Action(finish, "Starting post build actions"))
 BUILD_TARGETS += finishCommand
+if COMMAND_LINE_TARGETS:
+    finishDepends = [t for t in COMMAND_LINE_TARGETS if os.path.isdir(t)]
+    if finishDepends:
+        Depends( finishCommand, finishDepends)
+else:
+    Depends( finishCommand, env.GetLaunchDir())

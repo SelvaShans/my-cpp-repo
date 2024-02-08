@@ -1,4 +1,5 @@
 #SampleTest
 #Vector
 #Set
-Singleton
+#Singleton
+AbstractPattern

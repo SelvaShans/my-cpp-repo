@@ -1,5 +1,6 @@
-#SampleTest
-#Vector
-#Set
-#Singleton
-AbstractPattern
+SampleTest
+#CPPDEV/Vector
+#CPPDEV/Set
+#CPPDEV/Singleton
+#CPPDEV/AbstractPattern
+#CPPDEV/SpecialFunctions

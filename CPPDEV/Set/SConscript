@@ -1,0 +1,5 @@
+#getting local scons environment
+Import('env')
+localenv = env.Clone()
+
+scan = localenv.UnitTest("Set.bin", Glob('*.cpp'))

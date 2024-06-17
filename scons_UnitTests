@@ -1,7 +1,9 @@
 SampleTest
-#CPPDEV/Vector
-#CPPDEV/Set
-#CPPDEV/Singleton
-#CPPDEV/AbstractPattern
+#CPPDEV/STL/Vector
+#CPPDEV/STL/Set
+#CPPDEV/DesignPatterns/Singleton
+#CPPDEV/DesignPatterns/AbstractPattern
 #CPPDEV/SpecialFunctions
 #CPPDEV/Template
+#CPPDEV/DesignPatterns/Builder
+#CPPDEV/DesignPatterns/Observer

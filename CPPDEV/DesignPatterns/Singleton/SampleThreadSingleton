@@ -1,0 +1,60 @@
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <future>
+
+using namespace std;
+class Singleton {
+    private:
+        static Singleton *singleton_obj;
+        int value = 0;
+        static std::mutex mtx;
+        Singleton(int data = 0){
+            value = data;
+            std::cout << "Inside Singleton Constructor "<< std::endl;
+        }
+        Singleton(const Singleton&) {
+        }
+        Singleton &operator=(Singleton&) {
+            return *this;
+        }
+    public:
+        static Singleton *getSingletonInstance(int data) {
+        if (singleton_obj == nullptr) {
+                std::unique_lock<std::mutex> lck(mtx);
+                if (singleton_obj == nullptr) {
+                    singleton_obj = new Singleton(data);
+                }
+                return singleton_obj;
+            }
+        }
+        int getValue() const {
+            return singleton_obj->value;
+        }
+};
+Singleton *Singleton::singleton_obj = nullptr;
+mutex Singleton::mtx;
+
+int main ()
+{
+    cout << "\n===============================\n"; 
+
+    //Singleton *s1 = Singleton::getSingletonInstance(10);
+    //Singleton *s2 = Singleton::getSingletonInstance(12);
+    
+    std::thread t1(Singleton::getSingletonInstance, 10);
+    std::thread t2(Singleton::getSingletonInstance, 12);
+    std::thread t3(Singleton::getSingletonInstance, 10);
+    std::thread t4(Singleton::getSingletonInstance, 12);
+
+    t1.join();
+    t2.join();
+    t3.join();
+    t4.join();
+
+    //std::cout << s1->getValue() << std::endl;
+    //std::cout << s2->getValue();
+
+    cout << "\n===============================\n";
+    return 0;
+}

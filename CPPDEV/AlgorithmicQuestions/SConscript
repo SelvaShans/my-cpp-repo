@@ -1,0 +1,6 @@
+#getting local scons environment
+Import('env')
+localenv = env.Clone()
+
+scan = localenv.UnitTest("LargestSumContiguousSubarray.bin", Glob('LargestSumContiguousSubarray.cpp'))
+scan = localenv.UnitTest("SmallestInteger.bin", Glob('SmallestInteger.cpp'))
